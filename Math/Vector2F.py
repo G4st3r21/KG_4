@@ -5,3 +5,4 @@ class Vector2F:
 
     def __add__(self, other):
         return Vector2F(self.x + other.x, self.y + other.y)
+

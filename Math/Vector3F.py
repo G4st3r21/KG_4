@@ -1,6 +1,7 @@
 from math import e, sqrt, cos, sin
 
-import numpy as np
+
+# import numpy as np
 
 
 class Vector3F:
@@ -9,8 +10,11 @@ class Vector3F:
         self.y: float = y
         self.z: float = z
 
-    def to_np_array(self):
-        return np.array([self.x, self.y, self.z])
+    def __str__(self):
+        return f"{self.x}, {self.y}. {self.z}"
+
+    # def to_np_array(self):
+    #     return np.array([self.x, self.y, self.z])
 
     def __add__(self, other):
         self.x += other.x
@@ -30,7 +34,8 @@ class Vector3F:
     def cross(self, var1, var2):
         var3 = var1.y * var2.z - var1.z * var2.y
         var4 = var2.x * var1.z - var2.z * var1.x
-        self.x, self.y, self.z = var3, var4, var1.x * var2.y - var1.y * var2.x
+        var5 = var1.x * var2.y - var1.y * var2.x
+        self.x, self.y, self.z = var3, var4, var5
 
     def sub(self, var1, var2):
         self.x = var1.x - var2.x
@@ -38,7 +43,7 @@ class Vector3F:
         self.z = var1.z - var2.z
 
     def normalise(self):
-        var1 = 1.0 / sqrt(self.x * self.x + self.y * self.y + self.z * self.z)
+        var1 = 1.0 / sqrt(self.x ** 2 + self.y ** 2 + self.z ** 2)
         self.x *= var1
         self.y *= var1
         self.z *= var1

@@ -9,7 +9,7 @@ class Camera:
     def __init__(
             self, position: Vector3F, target: Vector3F,
             fov: float, aspect_ratio: float, near_plane: float, far_plane: float,
-            observe_range: int = 100, screen_dist: float = math.pi / 2
+            observe_range: float = math.pi / 2, screen_dist: float = 100
     ):
         self.position = position
         self.target = target
@@ -25,10 +25,17 @@ class Camera:
         delta = self.screen_dist / target.z * scale
         projection = Vector2F(target.x * delta, target.y * delta)
         in_screen_basis = projection + Vector2F(width / 2, -height / 2)
-        return in_screen_basis.y, -in_screen_basis.x
+        return in_screen_basis.x, -in_screen_basis.y
 
     def move_position(self, translation: Vector3F):
         self.position + translation
+
+    # TODO: Афинные сюда!
+    # def move_target(self, translation: Vector3F):
+    #     self.target + translation
+
+    def set_position(self, position: Vector3F):
+        self.position = position
 
     def rotate(self, angle, axis: Vector3F):
         self.target.rotate(angle, axis)
