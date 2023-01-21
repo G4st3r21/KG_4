@@ -7,7 +7,7 @@ class Model:
         self.vertices: List[Vector3F] = []
         self.texture_vertices: List[Vector2F] = []
         self.normals: List[Vector3F] = []
-        self.polygons: set = set()
+        self.polygons: list = []
 
         self.local_points = []
 

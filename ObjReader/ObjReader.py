@@ -11,7 +11,6 @@ from ObjReader.ObjReaderException import ObjReaderException
 
 def read(file_content: List[str]):
     res_model = Model()
-    now = datetime.now()
     for string in file_content:
         line_words = string.split()
         if line_words:
@@ -23,9 +22,8 @@ def read(file_content: List[str]):
             elif token == "vn":
                 res_model.normals.append(parse_normal(line_words))
             elif token == "f":
-                res_model.polygons.add(parse_face(line_words))
+                res_model.polygons.append(parse_face(line_words))
 
-    print("full reading:", datetime.now() - now)
     res_model.recalculate_points()
 
     return res_model

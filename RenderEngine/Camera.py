@@ -31,8 +31,6 @@ class Camera:
         self.position + translation
 
     # TODO: Афинные сюда!
-    # def move_target(self, translation: Vector3F):
-    #     self.target + translation
 
     def set_position(self, position: Vector3F):
         self.position = position

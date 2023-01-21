@@ -36,7 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             1.0, self.width() / self.height(), 0.01, 100
         )
 
-        self.TRANSLATION = 2
+        self.TRANSLATION = 0.5
         self.result_points = []
 
         self.fps = []
@@ -127,8 +127,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.painter.setRenderHint(QPainter.Antialiasing)
 
             self.painter.fillRect(0, 0, self.width(), self.height(), Qt.GlobalColor.white)
-
-            render_draw(self.painter, self.full_polygons, self.camera, self.main_model, self.width(), self.height())
+            self.painter.setPen(QColor(0, 0, 0))
+            render_new(self.painter, self.full_polygons, self.camera, self.main_model, self.width(), self.height())
             end = datetime.now() - start
 
             font = self.painter.font()
@@ -141,18 +141,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.painter.drawText(0, 160, f"Camera: {self.camera.position}")
 
             self.painter.end()
-
-# class RenderThread(QThread):
-#     def __init__(self, parent):
-#         super().__init__()
-#         self.parent = parent
-#
-#     def run(self) -> None:
-#         while True:
-#             self.parent.result_points = render(
-#                 self.parent.camera,
-#                 self.parent.main_model,
-#                 self.parent.width(),
-#                 self.parent.height()
-#             )
-#             self.parent.is_rendered = True
