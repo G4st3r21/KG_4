@@ -6,6 +6,7 @@ class Polygon:
         self.__vertex_indices = array('f')
         self.texture_vertex_indices = array('f')
         self.normal_indices = array('f')
+        self.avg_dz = -1
 
     def set_vertex_indices(self, vertex_indices: array):
         assert len(vertex_indices) >= 3

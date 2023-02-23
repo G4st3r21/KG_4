@@ -1,9 +1,7 @@
 from array import *
-from datetime import datetime
 from typing import List
+import numpy as np
 
-from Math.Vector2F import Vector2F
-from Math.Vector3F import Vector3F
 from Model.Model import Model
 from Model.Polygon import Polygon
 from ObjReader.ObjReaderException import ObjReaderException
@@ -24,14 +22,12 @@ def read(file_content: List[str]):
             elif token == "f":
                 res_model.polygons.append(parse_face(line_words))
 
-    res_model.recalculate_points()
-
     return res_model
 
 
 def parse_vertex(line_words: List[str]):
     try:
-        return Vector3F(float(line_words[1]), float(line_words[2]), float(line_words[3]))
+        return np.array([float(line_words[1]), float(line_words[2]), float(line_words[3])])
     except IndexError:
         raise ObjReaderException(f"Неподходящее кол-во координат(нужно 3)")
     except ValueError:
@@ -40,7 +36,7 @@ def parse_vertex(line_words: List[str]):
 
 def parse_texture_vertex(line_words: List[str]):
     try:
-        return Vector2F(float(line_words[1]), float(line_words[2]))
+        return np.array([float(line_words[1]), float(line_words[2])])
     except IndexError:
         raise ObjReaderException(f"Неподходящее кол-во координат(нужно 3)")
     except ValueError:
@@ -49,7 +45,7 @@ def parse_texture_vertex(line_words: List[str]):
 
 def parse_normal(line_words: List[str]):
     try:
-        return Vector3F(float(line_words[1]), float(line_words[2]), float(line_words[3]))
+        return np.array([float(line_words[1]), float(line_words[2]), float(line_words[3])])
     except IndexError:
         raise ObjReaderException(f"Неподходящее кол-во координат(нужно 3)")
     except ValueError:
