@@ -1,9 +1,6 @@
 from math import e, sqrt, cos, sin
 
 
-# import numpy as np
-
-
 class Vector3F:
     def __init__(self, x=0, y=0, z=0):
         self.x: float = x
@@ -12,9 +9,6 @@ class Vector3F:
 
     def __str__(self):
         return f"{self.x}, {self.y}. {self.z}"
-
-    # def to_np_array(self):
-    #     return np.array([self.x, self.y, self.z])
 
     def __add__(self, other):
         self.x += other.x
